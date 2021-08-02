@@ -1,0 +1,7 @@
+id,name,code,leave_type,date_from,date_to,days,status,remarks,created_at,updated_at
+1,"HR Manager",HR0001,Vacation,2020-10-22,2020-10-27,5,Pending,
+1,"HR Manager",HR0001,Vacation,2020-10-28,2020-10-29,2,Approved,
+1,"HR Manager",HR0001,Vacation,2020-10-28,2020-10-30,2,Approved,"approved by hr"
+1,"HR Manager",HR0001,Vacation,2020-10-28,2020-10-31,3,Approved,
+1,"HR Manager",HR0001,Leave,2020-10-21,2020-10-20,0,Approved,
+1,"HR Manager",HR0001,"Sick leave",2020-10-22,2020-12-25,64,Approved,

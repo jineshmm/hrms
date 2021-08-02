@@ -1,0 +1,14 @@
+
+
+.dib_display_hide {
+    display: none;
+}
+.form-control.error{
+  border-color: red;  
+}
+.error{
+  color:red !important;  
+}
+.warning-color{
+    background-color:orange !important;
+}
