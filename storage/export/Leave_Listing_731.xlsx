@@ -1,0 +1,4 @@
+id,name,code,leave_type,"Total leave"
+1,"HR Manager",HR0001,Vacation,7
+1,"HR Manager",HR0001,Leave,0
+1,"HR Manager",HR0001,"Sick leave",64
