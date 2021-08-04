@@ -404,4 +404,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('delete-emp-document/{id}', 'EmpController@deleteDocument');
 
     Route::get('overview/employee/{id}', ['as' => 'employeeoverview', 'uses' => 'EmpController@empOverview']);
+
+    Route::get('fetch/employee/{code}/attendance', ['as' => 'fetchindividualattendance', 'uses' => 'fetchController@employeeAttendance']);
 });

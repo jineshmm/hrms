@@ -938,6 +938,7 @@ class EmpController extends Controller {
     public function empOverview($userId){
         $details = Employee::where('user_id', $userId)->with('userrole.role','documents','employeeLoans','department','employeeLeaves')->first();
          $leaveTypeId =1;
+         $employeeId = $details->id;
         $count = EmployeeLeaves::where(['user_id' => $userId, 'leave_type_id' => $leaveTypeId, 'status' => '1'])->get();
 
         $day = 0;
@@ -954,9 +955,18 @@ class EmpController extends Controller {
           $totalLeaves =60;   
         }
         $remainingLeaves = $totalLeaves - $day;
+
+        $punchingDetails = \DB::table('employee_daily_punch_details')-> where('emp_id', $employeeId)->select( 
+    'emp_id',
+    'entry_date', 
+    \DB::raw('min(punch_time) as FirstIN') ,
+   \DB::raw('max(punch_time) as LastOUT'),\DB::raw('TIMESTAMPDIFF(MINUTE,min(punch_time),max(punch_time)) as totalTime') 
+
+)->groupby('emp_id','entry_date')->get();
         
         
-        return view('hrms.employee.overview', compact('details','remainingLeaves'));
+        
+        return view('hrms.employee.overview', compact('details','remainingLeaves','punchingDetails'));
     }
     /**
      * 

@@ -383,68 +383,32 @@
 
 <!--       ****************************************************     ATTENDANCE TAB CONTENT END    ******************************************************         -->
         <div class="col-md-12 paneltabcontent" id='content_attendance' aria-hidden="false" style='display:none'>
-             @if(count($details->employeeLeaves)>0)
+             @if(count($punchingDetails)>0)
             <div class="table-responsive">
                                 <table class="table allcp-form theme-warning tc-checkbox-1 fs13">
                                     <thead>
                                     <tr class="bg-light">
                                         <th class="text-center">Id</th>
-                                        <th class="text-center">Leave Type</th>
-                                        <th class="text-center">Date From</th>
-                                        <th class="text-center">Date To</th>
-                                        <th class="text-center">Days</th>
-                                        <th class="text-center">Remarks</th>
-                                        <th class="text-center">Exit re-entry</th>
-                                        <th class="text-center">Ticket</th>
-                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Check in</th>
+                                        <th class="text-center">Check out</th>
+                                        <th class="text-center">Total time</th>
+                                        
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php $i =0;?>
-                                    @foreach($details->employeeLeaves as $leave)
+                                    @foreach($punchingDetails as $attendance)
                                         <tr>
                                             <td class="text-center">{{$i+=1}}</td>
-                                            <td class="text-center">{{getLeaveType($leave->leave_type_id)}}</td>
-                                            <td class="text-center">{{getFormattedDate($leave->date_from)}}</td>
-                                            <td class="text-center">{{getFormattedDate($leave->date_to)}}</td>
-                                            <td class="text-center">{{$leave->days}}</td>
-                                            <td class="text-center">{{$leave->remarks}}</td>
-                                            <td class="text-center">@if(isset($leave->tickets->ticket_file))
-                                                <a href="/downloadleavedocuments/{{$leave->id}}/1">{{$leave->tickets->ticket_file}}</a>
-                                                  @endif
-                                                
-                                           </td>
-                                             <td class="text-center">
-                                                 @if(isset($leave->exitReentry->uploaded_file))
-                                                  <a href="/downloadleavedocuments/{{$leave->id}}/0">{{$leave->exitReentry->uploaded_file}}</a>
-                                                  @endif
-                                                 </td>
-                                            <td class="text-center">
-                                                <div class="btn-group text-right">
-                                                    @if($leave->status==0)
-                                                        <button type="button"
-                                                                class="btn btn-info br2 btn-xs fs12"
-                                                                aria-expanded="false"> <i class="fa fa-external-link"> Pending </i>
-
-                                                        </button>
-                                                    @elseif($leave->status==1)
-                                                        <button type="button"
-                                                                class="btn btn-success br2 btn-xs fs12"
-                                                                aria-expanded="false"> <i class="fa fa-check"> Approved </i>
-
-                                                        </button>
-                                                    @else
-                                                        <button type="button"
-                                                                class="btn btn-danger br2 btn-xs fs12"
-                                                                aria-expanded="false"> <i class="fa fa-times"> Disapproved </i>
-
-                                                        </button>
-                                                    @endif
-
-                                                </div>
-                                            </td>
+                                            <td class="text-center">{{date('d-m-Y',strtotime($attendance->entry_date))}}</td>
+                                            <td class="text-center">{{date('d-m-Y H:i:s',strtotime($attendance->FirstIN))}}</td>
+                                            <td class="text-center">{{date('d-m-Y H:i:s',strtotime($attendance->LastOUT))}}</td>
+                                            <td class="text-center">{{$attendance->totalTime}}</td>
+                                            
                                         </tr>
                                     @endforeach
+                                  
                                   
                                     </tbody>
                                 </table>
