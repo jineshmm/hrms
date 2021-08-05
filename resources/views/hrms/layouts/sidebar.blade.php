@@ -19,7 +19,7 @@
 <!-- -------------- Sidebar Menu  -------------- -->
 <ul class="nav sidebar-menu scrollable">
     <li class="active">
-        <a class="accordion-toggle menu-open" href="/dashboard">
+        <a  href="/overview/employee/{{Auth::user()->id}}">
             <span class="fa fa-dashboard"></span>
             <span class="sidebar-title">Dashboard</span>
         </a>
