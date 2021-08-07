@@ -391,6 +391,7 @@
                                         <th class="text-center">Check in</th>
                                         <th class="text-center">Check out</th>
                                         <th class="text-center">Total time</th>
+                                        <th class="text-center">Status</th>
                                         
                                     </tr>
                                     </thead>
@@ -403,6 +404,18 @@
                                             <td class="text-center"><?php echo e(date('d-m-Y H:i:s',strtotime($attendance->FirstIN))); ?></td>
                                             <td class="text-center"><?php echo e(date('d-m-Y H:i:s',strtotime($attendance->LastOUT))); ?></td>
                                             <td class="text-center"><?php echo e($attendance->totalTime); ?></td>
+                                            <td class="text-center">
+                                                <?php if($attendance->totalTime < 465 && date('H:i', strtotime($attendance->FirstIN)) >'8:30'): ?>
+                                                <span class="btn-danger">Absent</span>
+                                                <?php elseif($attendance->totalTime < 465): ?>
+                                                 <span class="btn-danger">Absent</span>
+                                                <?php elseif($attendance->totalTime ==0 && date('d-m-Y',strtotime($attendance->entry_date)) == date('d-m-Y H:i:s',strtotime($attendance->LastOUT))): ?>
+                                                Present
+                                                <?php else: ?>
+                                                    Present
+
+                                                <?php endif; ?>    
+                                            </td>
                                             
                                         </tr>
                                     <?php endforeach; ?>
