@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
-        \App\Console\Commands\Wish::class
+        \App\Console\Commands\Wish::class,
+        \App\Console\Commands\AttendanceFetch::class,
     ];
 
     /**
@@ -25,7 +26,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+         $schedule->command('inspire')->hourly();
     }
 }
